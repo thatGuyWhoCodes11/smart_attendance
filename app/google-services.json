@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669753934474",
+    "project_id": "smart-attendace-136b3",
+    "storage_bucket": "smart-attendace-136b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669753934474:android:e33ec922356cb203e9a373",
+        "android_client_info": {
+          "package_name": "com.example.projectwork"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKA8RTgaYjMLCqdcHdQMDfsvBfyr6jWME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

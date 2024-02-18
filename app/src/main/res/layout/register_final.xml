@@ -40,6 +40,7 @@
             android:textSize="30dp" />
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -49,6 +50,7 @@
             android:layout_marginBottom="20dp"
             />
         <EditText
+            android:id="@+id/DOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -58,6 +60,7 @@
             android:layout_marginBottom="20dp"
             />
         <EditText
+            android:id="@+id/gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -69,17 +72,20 @@
     </LinearLayout>
 
     <Button
-        android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/credentials_button"
-        app:backgroundTint="@color/cyan"
+        android:fontFamily="@font/poppins_bold"
+        android:onClick="handeSendRegister"
+        android:text="Register"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:fontFamily="@font/poppins_bold"
-        android:onClick="handeSendRegister"/>
+        app:backgroundTint="@color/cyan" />
 </RelativeLayout>
 

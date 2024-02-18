@@ -35,7 +35,7 @@
             android:textSize="30dp"
             android:layout_marginBottom="100dp"/>
         <EditText
-            android:id="@+id/InstructorID"
+            android:id="@+id/instructorID_logIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="20dp"
             />
         <EditText
-            android:id="@+id/Password"
+            android:id="@+id/password_logIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
