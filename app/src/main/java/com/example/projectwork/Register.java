@@ -24,15 +24,42 @@ public class Register extends AppCompatActivity {
         repeatPassword = findViewById(R.id.repeatPassword);
     }
     public void handleNextRegister(View view){
-        Intent nav = new Intent(this,RegisterFinal.class);
+        Intent nav = new Intent(this, RegisterFinal.class);
         Bundle extras = new Bundle();
-        if(!password.getText().toString().equals(repeatPassword.toString())){
-            Toast.makeText(this, "make sure passwords match", Toast.LENGTH_SHORT).show();
+
+        String instructorIDValue = instructorID.getText().toString().trim();
+        String fullNameValue = fullName.getText().toString().trim();
+        String passwordValue = password.getText().toString().trim();
+        String repeatPasswordValue = repeatPassword.getText().toString().trim();
+
+        if (instructorIDValue.isEmpty()) {
+            Toast.makeText(this, "Instructor ID is required", Toast.LENGTH_SHORT).show();
             return;
         }
-        extras.putString("instructorID",instructorID.getText().toString());
-        extras.putString("fullName",fullName.getText().toString());
-        extras.putString("password",password.getText().toString());
+
+        if (fullNameValue.isEmpty()) {
+            Toast.makeText(this, "Full name is required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (passwordValue.isEmpty()) {
+            Toast.makeText(this, "Password is required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (repeatPasswordValue.isEmpty()) {
+            Toast.makeText(this, "Repeat password is required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!passwordValue.equals(repeatPasswordValue)) {
+            Toast.makeText(this, "Make sure passwords match", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        extras.putString("instructorID", instructorIDValue);
+        extras.putString("fullName", fullNameValue);
+        extras.putString("password", passwordValue);
         nav.putExtras(extras);
         startActivity(nav);
     }
