@@ -39,6 +39,15 @@
             android:textColor="@color/black"
             android:textSize="30dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:text="Instructor ID"
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black" />
+
         <EditText
             android:id="@+id/instructorID_register"
             android:layout_width="match_parent"
@@ -49,6 +58,15 @@
             android:background="@drawable/credentials_edit_text"
             android:layout_marginBottom="20dp"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:text="Full Name"
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black" />
         <EditText
             android:id="@+id/fullName"
             android:layout_width="match_parent"
@@ -59,6 +77,15 @@
             android:background="@drawable/credentials_edit_text"
             android:layout_marginBottom="20dp"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:text="Password"
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black" />
         <EditText
             android:inputType="textPassword"
             android:id="@+id/password_register"
@@ -70,6 +97,15 @@
             android:background="@drawable/credentials_edit_text"
             android:layout_marginBottom="20dp"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:text="Repeat Password"
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black" />
         <EditText
             android:inputType="textPassword"
             android:id="@+id/repeatPassword"
