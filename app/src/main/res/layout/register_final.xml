@@ -93,10 +93,9 @@
             android:layout_height="wrap_content"
             android:padding="15dp"
             android:layout_marginHorizontal="40dp"
-            android:hint="Gender"
             android:background="@drawable/credentials_edit_text"
             android:layout_marginBottom="20dp"
-            android:prompt="@string/gender_prompt"
+            android:prompt="@string/gender_prompt" /> <!-- not working! -->
             />
     </LinearLayout>
 
