@@ -2,6 +2,7 @@ package com.example.projectwork;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class SignInActivity extends AppCompatActivity {
     private EditText emailEditText;
@@ -33,7 +36,6 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show();
             return;
         }
-
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -41,6 +43,7 @@ public class SignInActivity extends AppCompatActivity {
                         // TODO: Navigate to the main activity or dashboard
                     } else {
                         Toast.makeText(SignInActivity.this, "Wrong email or password.", Toast.LENGTH_SHORT).show();
+                        Log.d("handleSignInException", Objects.requireNonNull(task.getException()).toString());
                     }
                 });
     }

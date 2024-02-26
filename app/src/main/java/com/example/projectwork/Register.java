@@ -32,6 +32,11 @@ public class Register extends AppCompatActivity {
         String passwordValue = password.getText().toString().trim();
         String repeatPasswordValue = repeatPassword.getText().toString().trim();
 
+        if(passwordValue.length()<6){
+            Toast.makeText(this, "password must be 6 or more characters", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (instructorIDValue.isEmpty()) {
             Toast.makeText(this, "Instructor ID is required", Toast.LENGTH_SHORT).show();
             return;
@@ -39,11 +44,6 @@ public class Register extends AppCompatActivity {
 
         if (fullNameValue.isEmpty()) {
             Toast.makeText(this, "Full name is required", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (passwordValue.isEmpty()) {
-            Toast.makeText(this, "Password is required", Toast.LENGTH_SHORT).show();
             return;
         }
 

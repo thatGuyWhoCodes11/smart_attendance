@@ -15,8 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,10 +29,13 @@ import java.util.Map;
 
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
+
 import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 public class RegisterFinal extends AppCompatActivity {
     DatabaseReference db;
+    FirebaseAuth mAuth;
     EditText email_ET;
     EditText DOB_ET;
     Spinner gender_ET;
@@ -88,7 +95,6 @@ public class RegisterFinal extends AppCompatActivity {
     public void handelSendRegister(View view){
         Intent nav = new Intent(this,SignInActivity.class);
         Bundle extras=getIntent().getExtras();
-
         String instructorID;
         String fullName;
         String password;
@@ -119,19 +125,36 @@ public class RegisterFinal extends AppCompatActivity {
             fullName=extras.getString("fullName");
             password=extras.getString("password");
             db = FirebaseDatabase.getInstance().getReference("users");
+            mAuth = FirebaseAuth.getInstance();
             Map<String, Object> data = new HashMap<>();
             data.put("instructorID",instructorID);
             data.put("fullName",fullName);
-            data.put("password",password);
-            data.put("email",email);
             data.put("DOB",DOB);
             data.put("gender",gender);
-            db.setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            //create a new authentication instance with email and password
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(RegisterFinal.this, "success!", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(RegisterFinal.this, "something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            //check if the instance is saved and get the uid
+            if(mAuth.getCurrentUser() != null){
+                data.put("uid",mAuth.getUid());
+            }
+            //save the user credentials except email and password
+            db.push().setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     Toast.makeText(RegisterFinal.this, "Account created", Toast.LENGTH_SHORT).show();
+                    nav.putExtras(extras);
+                    startActivity(nav);
+                    finish();
                 }
-
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
@@ -139,9 +162,6 @@ public class RegisterFinal extends AppCompatActivity {
                     Log.d(TAG, e.toString());
                 }
             });
-            nav.putExtras(extras);
-            startActivity(nav);
-            finish();
         }
     }
 }
