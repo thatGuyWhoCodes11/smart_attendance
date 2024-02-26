@@ -3,21 +3,50 @@ package com.example.projectwork;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignInActivity extends AppCompatActivity {
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
+        emailEditText = findViewById(R.id.loginEmail); // Updated to reference the email input
+        passwordEditText = findViewById(R.id.password_logIn);
+        mAuth = FirebaseAuth.getInstance();
     }
-    public void handleRegister(View view) {
-        //todo handle signin requests with firebase
+
+    public void handleSignIn(View view) {
+        String email = emailEditText.getText().toString(); // Updated to use the email variable
+        String password = passwordEditText.getText().toString();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(SignInActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
+                        // TODO: Navigate to the main activity or dashboard
+                    } else {
+                        Toast.makeText(SignInActivity.this, "Wrong email or password.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
-    public void handleRequestRegister(View view){
-        Intent nav =new Intent(this,Register.class);
+
+    public void handleRequestRegister(View view) {
+        Intent nav = new Intent(this, Register.class);
         startActivity(nav);
     }
 }
