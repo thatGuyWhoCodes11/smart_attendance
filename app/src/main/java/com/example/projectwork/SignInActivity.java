@@ -29,6 +29,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void handleSignIn(View view) {
+        Intent intent = new Intent(this, CourseSelection.class);
         String email = emailEditText.getText().toString(); // Updated to use the email variable
         String password = passwordEditText.getText().toString();
 
@@ -40,7 +41,8 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(SignInActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
-                        // TODO: Navigate to the main activity or dashboard
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(SignInActivity.this, "Wrong email or password.", Toast.LENGTH_SHORT).show();
                         Log.d("handleSignInException", Objects.requireNonNull(task.getException()).toString());
@@ -50,6 +52,10 @@ public class SignInActivity extends AppCompatActivity {
 
     public void handleRequestRegister(View view) {
         Intent nav = new Intent(this, Register.class);
+        startActivity(nav);
+    }
+    public void handleForgotPassword(View view){
+        Intent nav = new Intent(this,PasswordRecovery.class);
         startActivity(nav);
     }
 }

@@ -24,6 +24,8 @@
         <activity android:name=".SignInActivity"/>
         <activity android:name=".Register"/>
         <activity android:name=".RegisterFinal"/>
+        <activity android:name=".CourseSelection"/>
+        <activity android:name=".PasswordRecovery"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
