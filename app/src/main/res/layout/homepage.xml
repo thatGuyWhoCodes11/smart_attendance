@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/SignInLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/left_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_account_circle_24"/>
+
+            <TextView
+                android:id="@+id/center_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Smart Attendance"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:textColor="@android:color/black"
+                android:textSize="30dp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/right_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_menu_24"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:text="Welcom Back instructor!"
+            android:textSize="50dp"
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="5\n\nTotal present people "
+                android:textSize="30sp"
+                android:layout_margin="4dp"
+                android:background="@android:color/holo_blue_bright"/> <!-- Square 1 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="5\n\nTotal absences"
+                android:textSize="30sp"
+                android:layout_margin="4dp"
+                android:background="@android:color/holo_blue_bright"/> <!-- Square 2 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="5\n\npresent per day"
+                android:textSize="30sp"
+                android:layout_margin="4dp"
+                android:background="@android:color/holo_blue_bright"/> <!-- Square 3 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_columnWeight="1"
+                android:text="5\n\nabsent per day"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:textSize="30sp"
+                android:layout_margin="4dp"
+                android:background="@android:color/holo_blue_bright"/> <!-- Square 4 -->
+
+        </GridLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
