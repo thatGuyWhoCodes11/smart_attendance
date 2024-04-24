@@ -57,6 +57,7 @@
             android:text="Welcom Back instructor!"
             android:textSize="50dp"/>
 
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,46 +69,50 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:layout_columnWeight="1"
                 android:fontFamily="@font/josefin_sans_bold"
-                android:text="5\n\nTotal present people "
+                android:text="@string/totalPresent"
                 android:textSize="30sp"
                 android:layout_margin="4dp"
+                android:paddingLeft="5dp"
                 android:background="@android:color/holo_blue_bright"/> <!-- Square 1 -->
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:layout_columnWeight="1"
                 android:fontFamily="@font/josefin_sans_bold"
-                android:text="5\n\nTotal absences"
+                android:text="@string/totalAbsences"
                 android:textSize="30sp"
                 android:layout_margin="4dp"
+                android:paddingLeft="5dp"
                 android:background="@android:color/holo_blue_bright"/> <!-- Square 2 -->
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:layout_columnWeight="1"
                 android:fontFamily="@font/josefin_sans_bold"
-                android:text="5\n\npresent per day"
+                android:text="@string/dayPresents"
                 android:textSize="30sp"
                 android:layout_margin="4dp"
+                android:paddingLeft="5dp"
                 android:background="@android:color/holo_blue_bright"/> <!-- Square 3 -->
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:layout_columnWeight="1"
-                android:text="5\n\nabsent per day"
+                android:text="@string/dayAbsences"
                 android:fontFamily="@font/josefin_sans_bold"
                 android:textSize="30sp"
                 android:layout_margin="4dp"
+                android:paddingLeft="5dp"
                 android:background="@android:color/holo_blue_bright"/> <!-- Square 4 -->
 
         </GridLayout>
