@@ -11,4 +11,21 @@
         <item>OOP2</item>
         <item>Intro to database</item>
     </string-array>
+
+   <string name="totalPresent">  <!-- We should use Plurals to make the code dynamic -->
+        5\n\nTotal Presents
+    </string>
+
+    <string name="totalAbsences">
+        5\n\nTotal Absences
+    </string>
+
+    <string name="dayPresents">
+        5\n\nPresent Per Day
+    </string>
+
+    <string name="dayAbsences">
+        5\n\nAbsent Per Day
+    </string>
+
 </resources>
