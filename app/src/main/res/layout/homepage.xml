@@ -55,7 +55,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/josefin_sans_bold"
             android:text="Welcom Back instructor!"
-            android:textSize="50dp"
+            android:textSize="50dp"/>
 
         <GridLayout
             android:layout_width="match_parent"
