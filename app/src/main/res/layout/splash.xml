@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/SignInLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background Ellipses -->
+
+    <View
+        android:id="@+id/ellipse_3"
+        android:layout_width="145dp"
+        android:layout_height="146dp"
+        android:background="@drawable/blue_circle"
+        android:translationX="-60dp"
+        android:translationY="-20dp" />
+
+    <View
+        android:id="@+id/ellipse_2"
+        android:layout_width="145dp"
+        android:layout_height="146dp"
+        android:background="@drawable/blue_circle"
+        android:translationY="-70dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   Smart\nAttendance"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Add other views here as needed -->
+
+</LinearLayout>
+
+    <!-- Content Layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="100dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TextView
+            android:id="@+id/subtitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Recognizing \nStudents Faces by\n Ai"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/faceImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageView
+            android:id="@+id/faceImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/img"
+            app:layout_constraintStart_toEndOf="@id/subtitleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="32dp" />
+        <TextView
+            android:id="@+id/extraText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="The System\nAutomatically\nTake Attendance"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/extraImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleText"
+        android:layout_marginTop="155dp"
+        android:layout_marginStart="50dp">
+
+    </TextView>
+
+    <!-- New ImageView now on the left -->
+    <ImageView
+        android:id="@+id/extraImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/img_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/extraText"
+    app:layout_constraintTop_toBottomOf="@id/faceImage"
+    app:layout_constraintVertical_bias="0.1"
+    android:layout_marginTop="30dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="16dp">
+</ImageView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Button at the Bottom -->
+    <Button
+        android:id="@+id/button"
+        android:layout_width="278dp"
+    android:layout_height="50dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="60dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/credentials_button"
+        app:backgroundTint="@color/custom_button_color"
+    android:fontFamily="@font/poppins_bold"
+    android:text="Let's Get Started"
+    android:textColor="@color/black"
+    android:textSize="16sp" />
+
+</RelativeLayout>

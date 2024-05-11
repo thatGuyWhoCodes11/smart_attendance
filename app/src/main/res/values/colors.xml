@@ -5,4 +5,5 @@
     <color name="light_blue">#5E33DAFF</color>
     <color name="cyan">#62ffe3</color>
     <color name="blue">#0018FF</color>
+    <color name="custom_button_color">#32DAFF</color>
 </resources>
