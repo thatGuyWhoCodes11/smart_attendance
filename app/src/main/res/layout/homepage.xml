@@ -1,123 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/SignInLayout"
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HimeActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="end">
 
-    <LinearLayout
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu">
+    </com.google.android.material.navigation.NavigationView>
+
+    <!-- Main content layout -->
+    <RelativeLayout
+        android:id="@+id/SignInLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/left_icon"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_account_circle_24"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/left_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_account_circle_24"/>
+
+                <TextView
+                    android:id="@+id/center_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Smart Attendance"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="30dp"
+                    android:gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/right_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_menu_24"
+                    android:onClick="openDrawerMenu"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/black"/>
 
             <TextView
-                android:id="@+id/center_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Smart Attendance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/josefin_sans_bold"
-                android:textColor="@android:color/black"
-                android:textSize="30dp"
-                android:gravity="center"/>
+                android:text="Welcome Back instructor!"
+                android:textSize="50dp"/>
 
-            <ImageView
-                android:id="@+id/right_icon"
-                android:layout_width="wrap_content"
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_menu_24"/>
+                android:layout_marginTop="35dp"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false">
+
+                <TextView
+                    android:id="@+id/total_present"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:text="@string/totalPresent"
+                    android:textSize="30sp"
+                    android:layout_margin="4dp"
+                    android:paddingLeft="5dp"
+                    android:background="@android:color/holo_blue_bright"/>
+
+                <TextView
+                    android:id="@+id/total_absences"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:text="@string/totalAbsences"
+                    android:textSize="30sp"
+                    android:layout_margin="4dp"
+                    android:paddingLeft="5dp"
+                    android:background="@android:color/holo_blue_bright"/>
+
+                <TextView
+                    android:id="@+id/day_presents"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:text="@string/dayPresents"
+                    android:textSize="30sp"
+                    android:layout_margin="4dp"
+                    android:paddingLeft="5dp"
+                    android:background="@android:color/holo_blue_bright"/>
+
+                <TextView
+                    android:id="@+id/day_absences"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
+                    android:text="@string/dayAbsences"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:textSize="30sp"
+                    android:layout_margin="4dp"
+                    android:paddingLeft="5dp"
+                    android:background="@android:color/holo_blue_bright"/>
+            </GridLayout>
         </LinearLayout>
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/black"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/josefin_sans_bold"
-            android:text="Welcom Back instructor!"
-            android:textSize="50dp"/>
-
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:columnCount="2"
-            android:rowCount="2"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="170dp"
-                android:layout_weight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/josefin_sans_bold"
-                android:text="@string/totalPresent"
-                android:textSize="30sp"
-                android:layout_margin="4dp"
-                android:paddingLeft="5dp"
-                android:background="@android:color/holo_blue_bright"/> <!-- Square 1 -->
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="170dp"
-                android:layout_weight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/josefin_sans_bold"
-                android:text="@string/totalAbsences"
-                android:textSize="30sp"
-                android:layout_margin="4dp"
-                android:paddingLeft="5dp"
-                android:background="@android:color/holo_blue_bright"/> <!-- Square 2 -->
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="170dp"
-                android:layout_weight="1"
-                android:layout_columnWeight="1"
-                android:fontFamily="@font/josefin_sans_bold"
-                android:text="@string/dayPresents"
-                android:textSize="30sp"
-                android:layout_margin="4dp"
-                android:paddingLeft="5dp"
-                android:background="@android:color/holo_blue_bright"/> <!-- Square 3 -->
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="170dp"
-                android:layout_weight="1"
-                android:layout_columnWeight="1"
-                android:text="@string/dayAbsences"
-                android:fontFamily="@font/josefin_sans_bold"
-                android:textSize="30sp"
-                android:layout_margin="4dp"
-                android:paddingLeft="5dp"
-                android:background="@android:color/holo_blue_bright"/> <!-- Square 4 -->
-
-        </GridLayout>
-    </LinearLayout>
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
