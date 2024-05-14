@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterStudents"
+    tools:context=".TakeAttendance"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Register Students"
+                android:text="Attendance"
                 android:fontFamily="@font/josefin_sans_bold"
                 android:textColor="@android:color/black"
                 android:textSize="30dp"
@@ -47,7 +47,7 @@
         android:gravity="center">
         <ImageView
             android:visibility="invisible"
-            android:id="@+id/image"
+            android:id="@+id/imageAttendace"
             android:src="@drawable/whiteboard"
             android:scaleType="fitCenter"
             android:layout_marginHorizontal="30dp"
@@ -60,14 +60,14 @@
             android:textColor="@color/black"
             app:backgroundTint="@color/cyan"
             android:text="take a picture"
-            android:onClick="handleRegisterCap"
+            android:onClick="handleTakingPicture"
             />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/studentList"
+                android:id="@+id/studentListAttendance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -75,7 +75,7 @@
         </ScrollView>
     </LinearLayout>
     <Button
-        android:onClick="sendFaces"
+        android:onClick="handleTakeAttendance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -86,7 +86,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/credentials_button"
         android:fontFamily="@font/poppins_bold"
-        android:text="Register"
+        android:text="Take Attendance"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:backgroundTint="@color/cyan" />

@@ -14,6 +14,6 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void handleGetStarted(View view) {
-
+        getActionBar().show();
     }
 }
