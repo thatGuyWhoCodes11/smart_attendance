@@ -12,21 +12,45 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectWork"
         tools:targetApi="31">
+
+        <!-- Existing activities -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity"/>
-        <activity android:name=".Register"/>
-        <activity android:name=".RegisterFinal"/>
-        <activity android:name=".CourseSelection"/>
-        <activity android:name=".PasswordRecovery"/>
-        <activity android:name=".HomePage"/>
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false"/> <!-- Specify exported status -->
+        <activity
+            android:name=".Register"
+            android:exported="false"/> <!-- Specify exported status -->
+        <activity
+            android:name=".RegisterFinal"
+            android:exported="false"/> <!-- Specify exported status -->
+        <activity
+            android:name=".CourseSelection"
+            android:exported="false"/> <!-- Specify exported status -->
+        <activity
+            android:name=".PasswordRecovery"
+            android:exported="false"/> <!-- Specify exported status -->
+        <activity
+            android:name=".HomePage"
+            android:exported="false"/> <!-- Specify exported status -->
+
+        <!-- New HimeActivity -->
+        <activity
+            android:name=".HimeActivity"
+            android:exported="true"> <!-- Specify exported status -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
