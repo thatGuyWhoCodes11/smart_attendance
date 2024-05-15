@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TakeAttendance extends AppCompatActivity {
-    String host = "https://a9b2-31-167-116-85.ngrok-free.app";
+    String host = "https://e71d-31-167-173-244.ngrok-free.app";
     ImageView imageV;
     int Image_Capture_Code = 1;
     LinearLayout studentList;
