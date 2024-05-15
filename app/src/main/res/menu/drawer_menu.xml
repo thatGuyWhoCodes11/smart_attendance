@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_register"
+        android:title="Register students"
+        />
+    <item
+        android:id="@+id/nav_attendance"
+        android:title="Take attendance" />
+    <item
+        android:id="@+id/nav_history"
+        android:title="History" />
+    <item
+        android:id="@+id/nav_edit_account"
+        android:title="Edit account"
+        />
+</menu>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,12 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity"/>
-        <activity android:name=".Register"/>
-        <activity android:name=".RegisterFinal"/>
-        <activity android:name=".CourseSelection"/>
-        <activity android:name=".PasswordRecovery"/>
-        <activity android:name=".HomePage"/>
+        <activity android:exported="true" android:name=".SignInActivity"/>
+        <activity android:exported="true" android:name=".Register"/>
+        <activity android:exported="true" android:name=".RegisterFinal"/>
+        <activity android:exported="true" android:name=".CourseSelection"/>
+        <activity android:exported="true" android:name=".PasswordRecovery"/>
+        <activity android:exported="true" android:name=".HomePage"/>
+        <activity android:name=".RegisterStudents" android:exported="true"/>
+        <activity android:name=".TakeAttendance" android:exported="true"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
