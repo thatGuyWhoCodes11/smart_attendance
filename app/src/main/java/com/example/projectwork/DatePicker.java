@@ -1,5 +1,6 @@
 package com.example.projectwork;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -9,17 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class DatePicker extends AppCompatActivity {
 
     private EditText datePicker;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         datePicker = findViewById(R.id.date_picker);
-        ImageView calendarIcon = findViewById(R.id.ic_calendar);
+        ImageView calendarIcon = findViewById(R.id.calndr);
 
         calendarIcon.setOnClickListener(v -> showDatePickerDialog());
         datePicker.setOnClickListener(v -> showDatePickerDialog());

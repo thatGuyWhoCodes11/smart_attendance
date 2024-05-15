@@ -6,9 +6,15 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HimeActivity"
+    tools:context=".HomePage"
     android:fitsSystemWindows="true"
     tools:openDrawer="end">
+<!--    <FrameLayout-->
+<!--        android:id="@+id/container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--        &lt;!&ndash; Your main content goes here &ndash;&gt;-->
+<!--    </FrameLayout>-->
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"

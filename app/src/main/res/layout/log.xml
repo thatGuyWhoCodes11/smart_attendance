@@ -48,9 +48,10 @@
                 android:focusable="false"/>
 
             <ImageView
+                android:id="@+id/calndr"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_calendar"
+                android:src="@drawable/calndr"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"/>
