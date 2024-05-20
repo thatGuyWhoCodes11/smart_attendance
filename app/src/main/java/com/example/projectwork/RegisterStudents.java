@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class RegisterStudents extends AppCompatActivity {
-    String host = "https://e71d-31-167-173-244.ngrok-free.app";
+    String host = "https://incredibly-one-flamingo.ngrok-free.app";
     private ImageView imageV;
     private static final int Image_Capture_Code = 1;
     private LinearLayout studentList;
