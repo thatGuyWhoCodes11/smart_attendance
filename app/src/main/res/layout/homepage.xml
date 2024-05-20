@@ -16,16 +16,6 @@
 <!--        &lt;!&ndash; Your main content goes here &ndash;&gt;-->
 <!--    </FrameLayout>-->
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu">
-    </com.google.android.material.navigation.NavigationView>
-
     <!-- Main content layout -->
     <RelativeLayout
         android:id="@+id/SignInLayout"
@@ -146,4 +136,13 @@
             </GridLayout>
         </LinearLayout>
     </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu">
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
