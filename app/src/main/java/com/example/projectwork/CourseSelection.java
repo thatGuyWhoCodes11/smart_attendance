@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseUser;
+
 public class CourseSelection extends AppCompatActivity {
     Spinner Courses;
     @Override
@@ -16,19 +18,16 @@ public class CourseSelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_selection);
         Courses=findViewById(R.id.coursesSpinner);
-
     }
-
-
-
     public void handleContinue(View view){
         try {
+            Intent pastIntent=getIntent();
             String courseVal = Courses.getSelectedItem().toString();
             Bundle extras = new Bundle();
             extras.putString("course", courseVal);
-
             Intent intent = new Intent(this, HomePage.class);
             intent.putExtras(extras);
+            intent.putExtra("uid",pastIntent.getStringExtra("uid"));
             startActivity(intent);
         } catch (NullPointerException e) {          // in case no course is selected
             // This will catch cases where getSelectedItem() returns null.

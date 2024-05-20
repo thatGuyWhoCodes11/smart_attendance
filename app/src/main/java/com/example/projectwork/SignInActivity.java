@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -41,6 +42,9 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(SignInActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user=mAuth.getCurrentUser();
+                        assert user != null;
+                        intent.putExtra("uid",user.getUid());
                         startActivity(intent);
                         finish();
                     } else {

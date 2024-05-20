@@ -1,22 +1,32 @@
 package com.example.projectwork;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-public class HomePage extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
 
+public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
 
+    private NavigationView navi;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage); // Ensure this matches your layout file name
 
         // Initialize DrawerLayout
         drawerLayout = findViewById(R.id.drawer_layout);
+        navi = findViewById(R.id.navigation_view);
+        navi.setNavigationItemSelectedListener(this);
     }
 
     // Method to handle the click event
@@ -32,5 +42,11 @@ public class HomePage extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Log.d("TAG", "onNavigationItemSelected: testttttttttttttttttttttttttttttt");
+        return false;
     }
 }
