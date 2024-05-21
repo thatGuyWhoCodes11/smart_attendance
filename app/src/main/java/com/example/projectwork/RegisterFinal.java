@@ -5,10 +5,13 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,10 +24,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import java.util.Calendar;
@@ -38,17 +45,19 @@ public class RegisterFinal extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText email_ET;
     EditText DOB_ET;
+    EditText subject_ET;
     Spinner gender_ET;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_final);
 
+        subject_ET = findViewById(R.id.pick_subject);
         email_ET = findViewById(R.id.email);
         DOB_ET = findViewById(R.id.DOB);
 
         //setup the gender spinner
-        gender_ET = (Spinner)findViewById(R.id.gender_spinner);
+        gender_ET = findViewById(R.id.gender_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gender_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -98,13 +107,16 @@ public class RegisterFinal extends AppCompatActivity {
         String instructorID;
         String fullName;
         String password;
+        String subjectsUnfiltered = subject_ET.getText().toString();
         String email = email_ET.getText().toString();
         String DOB=DOB_ET.getText().toString();
         String gender=gender_ET.getSelectedItem().toString();
-
         // Regex pattern for email validation
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
+        if(subjectsUnfiltered.isEmpty()){
+            Toast.makeText(this, "Subjects are empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (email.isEmpty()) {
             Toast.makeText(this, "Email is required", Toast.LENGTH_SHORT).show();
             return;
@@ -121,47 +133,53 @@ public class RegisterFinal extends AppCompatActivity {
         }
 
         if(extras != null){
+            ArrayList<String> subjects = new ArrayList<>(Arrays.asList(subjectsUnfiltered.trim().split(",")));
             instructorID=extras.getString("instructorID");
             fullName=extras.getString("fullName");
             password=extras.getString("password");
-            db = FirebaseDatabase.getInstance().getReference("users");
             mAuth = FirebaseAuth.getInstance();
             Map<String, Object> data = new HashMap<>();
             data.put("instructorID",instructorID);
             data.put("fullName",fullName);
             data.put("DOB",DOB);
             data.put("gender",gender);
+            Map<String,Object> subjectHash = new HashMap<>();
+            for(String subject:subjects)
+                subjectHash.put(subject,"");
+            data.put("subjects",subjectHash);
             //create a new authentication instance with email and password
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(RegisterFinal.this, "success!", Toast.LENGTH_SHORT).show();
+                        handleDatabase(data,nav);
                     }else {
                         Toast.makeText(RegisterFinal.this, "something went wrong!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-            //check if the instance is saved and get the uid
-            if(mAuth.getCurrentUser() != null){
-                data.put("uid",mAuth.getUid());
-            }
-            //save the user credentials except email and password
-            db.push().setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    Toast.makeText(RegisterFinal.this, "Account created", Toast.LENGTH_SHORT).show();
-                    nav.putExtras(extras);
-                    startActivity(nav);
-                    finish();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(RegisterFinal.this, "Registration failed", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, e.toString());
-                }
-            });
         }
+    }
+
+    private void handleDatabase(Map<String,Object> data,Intent nav) {
+        Bundle extras=getIntent().getExtras();
+        db = FirebaseDatabase.getInstance().getReference("users/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+        //save the user credentials except email and password
+        db.setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(RegisterFinal.this, "Account created", Toast.LENGTH_SHORT).show();
+                nav.putExtras(extras);
+                startActivity(nav);
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterFinal.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, e.toString());
+            }
+        });
     }
 }

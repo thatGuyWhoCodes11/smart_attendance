@@ -41,8 +41,7 @@
             android:paddingVertical="10dp"
             android:layout_marginHorizontal="40dp"
             android:background="@drawable/spinner"
-            android:layout_marginBottom="20dp"
-            android:entries="@array/subjects_spinner"/>
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
     <Button
         android:id="@+id/button"

@@ -56,13 +56,10 @@
     </LinearLayout>
 
     <Button
-
-        android:layout_width="278dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/credentials_button"
         app:backgroundTint="@color/custom_button_color"
