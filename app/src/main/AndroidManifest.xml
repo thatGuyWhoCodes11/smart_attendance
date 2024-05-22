@@ -28,7 +28,7 @@
         <activity android:exported="true" android:name=".HomePage"/>
         <activity android:name=".RegisterStudents" android:exported="true"/>
         <activity android:name=".TakeAttendance" android:exported="true"/>
-        <activity android:name=".history" android:exported="true"/>
+        <activity android:name=".History" android:exported="true"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

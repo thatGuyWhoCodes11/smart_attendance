@@ -73,9 +73,9 @@ public class HomePage extends AppCompatActivity {
             startActivity(new Intent(this,RegisterStudents.class).putExtra("uid",uid).putExtra("course",courseVal));
         else if(item.getItemId()==R.id.nav_attendance)
             startActivity(new Intent(this,TakeAttendance.class).putExtra("uid",uid).putExtra("course",courseVal));
-        else if(item.getItemId()==R.id.nav_history)
-            Toast.makeText(this, "TODO CREATE HISTORY", Toast.LENGTH_SHORT).show();
-        else if(item.getItemId()==R.id.nav_edit_account)
+        else if(item.getItemId()==R.id.nav_history) {
+            startActivity(new Intent(this, History.class).putExtra("uid", uid).putExtra("course", courseVal));
+        }else if(item.getItemId()==R.id.nav_edit_account)
             Toast.makeText(this, "TODO CREATE EDIT ACCOUNT", Toast.LENGTH_SHORT).show();
         return true;
     }

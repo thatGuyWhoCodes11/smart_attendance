@@ -26,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
@@ -34,8 +35,11 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class TakeAttendance extends AppCompatActivity {
@@ -117,25 +121,30 @@ public class TakeAttendance extends AppCompatActivity {
     }
 
     public void handleTakeAttendance(View view) {
-        if(imageV == null){
+        if (imageV == null) {
             Toast.makeText(this, "please upload an image", Toast.LENGTH_LONG).show();
             return;
         }
         ArrayList<String> students = new ArrayList<>();
-        for(int i=0;i<results.length();i++)
+        for (int i = 0; i < results.length(); i++) {
             students.add(results.optJSONObject(i).optString("name"));
-        FirebaseDatabase.getInstance().getReference("users/"+uid+"/subjects/"+ courseVal +"/attendance_taken").setValue(students).addOnCompleteListener(new OnCompleteListener<Void>() {
+        }
+
+        String dateKey = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users/" + uid + "/subjects/" + courseVal + "/attendance_taken/" + dateKey);
+        dbRef.setValue(students).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(TakeAttendance.this, "success!", Toast.LENGTH_SHORT).show();
                     finish();
-                }
-                else
+                } else {
                     Toast.makeText(TakeAttendance.this, "fail", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+
     public String convertBitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Change format if needed (JPEG, etc.)
