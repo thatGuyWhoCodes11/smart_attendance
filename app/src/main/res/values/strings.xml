@@ -5,12 +5,6 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
-    <string-array name="subjects_spinner">
-        <item>math</item>
-        <item>OOP</item>
-        <item>OOP2</item>
-        <item>Intro to database</item>
-    </string-array>
 
    <string name="totalPresent">  <!-- We should use Plurals to make the code dynamic -->
         5\n\nTotal Presents

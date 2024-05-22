@@ -9,22 +9,24 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,17 +34,25 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TakeAttendance extends AppCompatActivity {
+    Bitmap image;
+    JSONArray results;
+    JSONObject responseJson = null;
     String host = "https://incredibly-one-flamingo.ngrok-free.app";
     ImageView imageV;
     int Image_Capture_Code = 1;
     LinearLayout studentList;
+    String courseVal;
+    String uid;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        uid=getIntent().getExtras().getString("uid");
+        courseVal=getIntent().getExtras().getString("course");
         setContentView(R.layout.take_attendance);
         imageV = findViewById(R.id.imageAttendace);
         studentList = findViewById(R.id.studentListAttendance);
@@ -69,13 +79,11 @@ public class TakeAttendance extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Bitmap image;
-                JSONObject results;
-                JSONObject responseJson = null;
                 try {
                     responseJson = new JSONObject(response);
-                    Bitmap bitmappedImage = convertbase64ToBitmap(responseJson.optString("base64Image"));
-                    setAttendanceImage(bitmappedImage,responseJson.optJSONArray("results"));
+                    image = convertbase64ToBitmap(responseJson.optString("base64Image"));
+                    results = responseJson.optJSONArray("results");
+                    setAttendanceImage(image,results);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -113,6 +121,20 @@ public class TakeAttendance extends AppCompatActivity {
             Toast.makeText(this, "please upload an image", Toast.LENGTH_LONG).show();
             return;
         }
+        ArrayList<String> students = new ArrayList<>();
+        for(int i=0;i<results.length();i++)
+            students.add(results.optJSONObject(i).optString("name"));
+        FirebaseDatabase.getInstance().getReference("users/"+uid+"/subjects/"+ courseVal +"/attendance_taken").setValue(students).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(TakeAttendance.this, "success!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else
+                    Toast.makeText(TakeAttendance.this, "fail", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     public String convertBitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
