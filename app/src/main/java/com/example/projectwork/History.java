@@ -37,12 +37,11 @@ public class History extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
         uid = getIntent().getExtras().getString("uid");
         courseVal = getIntent().getExtras().getString("course");
-
+        studentList = findViewById(R.id.student_list);
         datePicker = findViewById(R.id.date_picker);
         datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +66,10 @@ public class History extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         // Format the date in dd/MM/yyyy
-                        String formattedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", dayOfMonth, month + 1, year);
+                        String formattedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", year, month + 1, dayOfMonth);
                         // Set the formatted date in the DOB_ET EditText
                         datePicker.setText(formattedDate);
+                        fetchAttendanceForDate(formattedDate);
                     }
                 },
                 year, month, day);
@@ -77,6 +77,8 @@ public class History extends AppCompatActivity {
     }
 
     private void fetchAttendanceForDate(String dateKey) {
+        dateKey=dateKey.replace("/","-");
+        Log.d("DATEE",dateKey);
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("users/" + uid + "/subjects/" + courseVal + "/attendance_taken/" + dateKey);
         Log.d(TAG, "Fetching data from path: users/" + uid + "/subjects/" + courseVal + "/attendance_taken/" + dateKey);
 
@@ -89,7 +91,7 @@ public class History extends AppCompatActivity {
                 } else {
                     Log.d(TAG, "No data found for this date");
                     Toast.makeText(History.this, "No attendance data found for this date", Toast.LENGTH_SHORT).show();
-                    studentList.removeAllViews(); // Clear previous data if no data found
+                    finish(); // Clear previous data if no data found
                 }
             }
 
@@ -103,7 +105,7 @@ public class History extends AppCompatActivity {
 
 
     private void displayAttendance(DataSnapshot dataSnapshot) {
-        studentList.removeAllViews(); // Clear previous data
+        studentList.removeAllViews();
         for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()) {
             String studentName = studentSnapshot.getValue(String.class);
             TextView studentView = new TextView(this);
